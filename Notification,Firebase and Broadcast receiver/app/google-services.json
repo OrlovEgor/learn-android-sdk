@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "571796428599",
+    "project_id": "test-app-eeaf4",
+    "storage_bucket": "test-app-eeaf4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571796428599:android:e748e4a35547e24291acb2",
+        "android_client_info": {
+          "package_name": "ru.orlovegor.notificationapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571796428599-nnpqn4ja0b8gbc1k3ap5ui8ee1jpn0ul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxjbrZLMhVryMVXBI8K2kUXt4ODKSdQlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571796428599-nnpqn4ja0b8gbc1k3ap5ui8ee1jpn0ul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

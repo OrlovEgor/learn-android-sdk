@@ -1,6 +1,7 @@
 package ru.orlovegor.notificationapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -14,14 +15,15 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val tokenTextView = view.findViewById<TextView>(R.id.token_text_view)
         setTokenToTextView()
     }
 
     private fun setTokenToTextView() {
         val tokenTextView = view?.findViewById<TextView>(R.id.token_text_view)
         lifecycleScope.launch {
-            tokenTextView?.text = getToken()
+            val token = getToken()
+            tokenTextView?.text = token
+            Log.d("Tag", "$token")
         }
     }
 

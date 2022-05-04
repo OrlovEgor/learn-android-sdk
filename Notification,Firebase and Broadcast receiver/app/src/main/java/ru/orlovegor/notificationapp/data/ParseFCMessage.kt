@@ -4,7 +4,7 @@ import android.util.Log
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 
-interface ParseFCMessage {
+/*interface ParseFCMessage {
     fun parseDate(message: String): ChatMessage?
 
     class Base : ParseFCMessage {
@@ -16,4 +16,4 @@ interface ParseFCMessage {
         }
 
     }
-}
+}*/

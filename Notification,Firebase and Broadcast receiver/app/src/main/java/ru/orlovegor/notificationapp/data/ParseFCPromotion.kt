@@ -3,6 +3,7 @@ package ru.orlovegor.notificationapp.data
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 
+/*
 interface ParseFCPromotion {
     fun parseDate(message: String): NewPromotions?
 
@@ -14,4 +15,4 @@ interface ParseFCPromotion {
             return newPromotionsAdapter.fromJson(message)
         }
     }
-}
+}*/

@@ -4,6 +4,7 @@ package ru.orlovegor.notificationapp.data
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+/*
 @JsonClass(generateAdapter = true)
 data class NewPromotions(
     @Json(name = "tittle")
@@ -13,3 +14,4 @@ data class NewPromotions(
     @Json(name = "imageUrl")
     val imageUrl: String?
 )
+*/

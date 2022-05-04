@@ -1,9 +1,11 @@
 package ru.orlovegor.notificationapp
 
+import android.app.NotificationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.messaging.FirebaseMessaging
@@ -16,6 +18,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setTokenToTextView()
+        NotificationManagerCompat.from(requireContext()).cancelAll()
     }
 
     private fun setTokenToTextView() {

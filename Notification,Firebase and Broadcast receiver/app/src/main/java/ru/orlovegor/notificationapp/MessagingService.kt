@@ -1,7 +1,11 @@
 package ru.orlovegor.notificationapp
 
+import android.annotation.SuppressLint
+import android.app.PendingIntent
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.media.RingtoneManager
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.bumptech.glide.Glide
@@ -24,47 +28,55 @@ class MessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
-        when (message.data["type"]) {
-            NotificationType.MESSAGE.type -> message.data["data"]?.let {
-                ParseFCMessage.Base().parseDate(it)
-            }?.let { showMessageNotification(it) }
-
-            NotificationType.PROMOTION.type ->
-                message.data["data"]?.let {
-                    ParseFCPromotion.Base().parseDate(it)
-                        ?.let { showPromotionNotification(it) }
+        val result =
+            message.data["type"]?.let { type ->
+                message.data["data"]?.let { data ->
+                    NotificationParser.Base().parseNotification(type, data)
                 }
+            }
+        when (result) {
+            is NotificationMessages.ChatMessage -> showMessageNotification(result)
+            is NotificationMessages.NewPromotions -> showPromotionNotification(result)
+            null -> return
         }
-
     }
 
-    private fun showMessageNotification(message: ChatMessage) {
+
+    private fun showMessageNotification(message: NotificationMessages.ChatMessage) {
         val notification = NotificationCompat.Builder(this, NotificationChannels.CHAT_MESSAGE_ID)
             .setContentTitle(getString(R.string.content_tittle_message) + message.userName)
             .setContentText(getString(R.string.content_text_message) + message.text)
             .setSmallIcon(R.drawable.ic_message)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+            .setContentIntent(createPendingIntent())
             .build()
         NotificationManagerCompat.from(this)
             .notify(message.userID.toInt(), notification)
     }
 
-    private fun showPromotionNotification(promotion: NewPromotions) {
+    private fun showPromotionNotification(promotion: NotificationMessages.NewPromotions) {
         val notification = NotificationCompat.Builder(this, NotificationChannels.PROMOTION_ID)
             .setContentTitle(promotion.tittle)
             .setContentText(promotion.description)
             .setSmallIcon(R.drawable.ic_emotions_24)
-            .setLargeIcon(loadBitmapWithGlide(promotion.imageUrl?: ""))
+            .setLargeIcon(loadBitmapWithGlide(promotion.imageUrl ?: ""))
+            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setContentIntent(createPendingIntent())
             .build()
         NotificationManagerCompat.from(this)
             .notify(PROMO_NOTIFICATION_ID, notification)
     }
 
+    private fun createPendingIntent() = PendingIntent.getActivity(this, 123, Intent(this, MainActivity::class.java), 0)
+
+    @SuppressLint("CheckResult")
     private fun loadBitmapWithGlide(url: String): Bitmap? {
-        var bitmap:Bitmap? = null
+        var bitmap: Bitmap? = null
         Glide.with(this)
             .asBitmap()
             .placeholder(R.drawable.ic_error_24)
-             .error(R.drawable.ic_error_24)
+            .error(R.drawable.ic_error_24)
             .load(url)
             .listener(object : RequestListener<Bitmap> {
                 override fun onLoadFailed(
@@ -86,15 +98,12 @@ class MessagingService : FirebaseMessagingService() {
                     bitmap = resource
                     return false
                 }
-
             })
-
-return bitmap
-
+        return bitmap
     }
 
-    companion object{
-       private const val PROMO_NOTIFICATION_ID = 1
+    companion object {
+        private const val PROMO_NOTIFICATION_ID = 1
     }
 }
 

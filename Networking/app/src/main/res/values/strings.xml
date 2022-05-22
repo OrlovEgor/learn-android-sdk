@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Homework OkHttp</string>
+    <string name="search_movies">Search movies</string>
+    <string name="genre">Genre</string>
+    <string name="enter_the_year">Enter the year the movie was released</string>
+    <string name="enter_the_tittle">Enter the tittle of the movie</string>
+    <string name="error">Error</string>
+    <string name="enter_correct_year">Enter the correct year</string>
+    <string-array
+        name="genre_string_array">
+        <item>movie</item>
+        <item>series</item>
+        <item>episode</item>
+        <item>not chosen</item>
+    </string-array>
+</resources>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="4dp">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listMovie"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/searchMovieButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_movie" />
+
+    <ProgressBar
+        android:id="@+id/movieProgressBar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="4dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/retryTextView"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:gravity="center"
+        android:text="@string/error"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/listMovie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/listMovie" />
+
+    <Button
+        android:id="@+id/retryButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="196dp"
+        android:text="Retry"
+        app:layout_constraintBottom_toBottomOf="@+id/listMovie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/tittleMovieEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:hint="@string/enter_the_tittle"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@id/yearReleaseEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/yearReleaseEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="@string/enter_the_year"
+        android:inputType="number"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/searchMovieButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/search_movies"
+        app:layout_constraintBottom_toTopOf="@+id/tittleMovieEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="@string/genre"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <AutoCompleteTextView
+            android:id="@+id/typeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/messageErrorGroup"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="retryTextView,retryButton" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

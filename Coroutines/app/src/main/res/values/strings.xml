@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Github</string>
+    <string name="main_profile">Профиль</string>
+    <string name="main_repositories">Список репозиториев</string>
+    <string name="auth_login">Войти</string>
+    <string name="auth_canceled">Аутентификация не выполнена</string>
+    <string name="name">Name</string>
+    <string name="search">Search</string>
+    <string name="error_toast">Error connection</string>
+    <string name="Star">Star</string>
+    <string name="unstar">Unstar</string>
+    <string name="error">Error</string>
+</resources>

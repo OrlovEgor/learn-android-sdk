@@ -1,0 +1,315 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "fbdd5b2a2b0993ef5f28a933212bb293",
+    "entities": [
+      {
+        "tableName": "cabinet",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cabinet_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `number` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "cabinet_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "number",
+            "columnName": "number",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "cabinet_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "doctor",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`doctor_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` TEXT NOT NULL, `last_name` TEXT NOT NULL, `hospital_id` INTEGER NOT NULL, `work_time_id` INTEGER NOT NULL, `specialization` TEXT NOT NULL, `cabinet_id` INTEGER NOT NULL, FOREIGN KEY(`work_time_id`) REFERENCES `work_time`(`work_time_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`hospital_id`) REFERENCES `hospital`(`hospital_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "doctor_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstName",
+            "columnName": "first_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastName",
+            "columnName": "last_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hospitalId",
+            "columnName": "hospital_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "workTimeId",
+            "columnName": "work_time_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "specialization",
+            "columnName": "specialization",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cabinetId",
+            "columnName": "cabinet_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "doctor_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "work_time",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "work_time_id"
+            ],
+            "referencedColumns": [
+              "work_time_id"
+            ]
+          },
+          {
+            "table": "hospital",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "hospital_id"
+            ],
+            "referencedColumns": [
+              "hospital_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "hospital",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`hospital_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tittle` TEXT NOT NULL, `address` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "hospital_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tittle",
+            "columnName": "tittle",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "address",
+            "columnName": "address",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "hospital_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "patient",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`patient_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` TEXT NOT NULL, `last_name` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "patient_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstName",
+            "columnName": "first_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastName",
+            "columnName": "last_name",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "patient_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "record",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`record_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `patient_id` INTEGER NOT NULL, `diagnosis` TEXT NOT NULL, `therapy` TEXT NOT NULL, FOREIGN KEY(`patient_id`) REFERENCES `patient`(`patient_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "record_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "patientId",
+            "columnName": "patient_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "diagnosis",
+            "columnName": "diagnosis",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "therapy",
+            "columnName": "therapy",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "record_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "patient",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "patient_id"
+            ],
+            "referencedColumns": [
+              "patient_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "work_time",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`work_time_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `time_start` TEXT NOT NULL, `time_end` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "work_time_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timeStart",
+            "columnName": "time_start",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timeEnd",
+            "columnName": "time_end",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "work_time_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "DoctorAndPatient",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`patient_id` INTEGER NOT NULL, `doctor_id` INTEGER NOT NULL, PRIMARY KEY(`doctor_id`, `patient_id`), FOREIGN KEY(`doctor_id`) REFERENCES `doctor`(`doctor_id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`patient_id`) REFERENCES `patient`(`patient_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "patientId",
+            "columnName": "patient_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "doctorId",
+            "columnName": "doctor_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "doctor_id",
+            "patient_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "doctor",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "doctor_id"
+            ],
+            "referencedColumns": [
+              "doctor_id"
+            ]
+          },
+          {
+            "table": "patient",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "patient_id"
+            ],
+            "referencedColumns": [
+              "patient_id"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fbdd5b2a2b0993ef5f28a933212bb293')"
+    ]
+  }
+}

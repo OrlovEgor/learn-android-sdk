@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/doctorFragment">
+
+    <fragment
+        android:id="@+id/doctorFragment"
+        android:name="ru.orlovegor.daoroom.ui.doctor.DoctorFragment"
+        android:label="DoctorFragment"
+        tools:layout="@layout/fragment_doctor">
+        <action
+            android:id="@+id/action_doctorFragment_to_patientFragment"
+            app:destination="@id/patientFragment" />
+        <action
+            android:id="@+id/action_doctorFragment_to_addDoctorFragment"
+            app:destination="@id/addDoctorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/patientFragment"
+        android:name="ru.orlovegor.daoroom.ui.patient.PatientFragment"
+        android:label="fragment_patient"
+        tools:layout="@layout/fragment_patient">
+        <action
+            android:id="@+id/action_patientFragment_to_recordsFragment"
+            app:destination="@id/recordsFragment" />
+        <action
+            android:id="@+id/action_patientFragment_to_addPatientFragment"
+            app:destination="@id/addPatientFragment" />
+        <argument
+            android:name="doctorId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/recordsFragment"
+        android:name="ru.orlovegor.daoroom.ui.records.RecordsFragment"
+        android:label="fragment_records"
+        tools:layout="@layout/fragment_records">
+        <action
+            android:id="@+id/action_recordsFragment_to_addDiagnosisFragment"
+            app:destination="@id/addDiagnosisFragment" />
+        <argument
+            android:name="patientId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_recordsFragment_to_updateRecordFragment"
+            app:destination="@id/updateRecordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addDiagnosisFragment"
+        android:name="ru.orlovegor.daoroom.ui.records.AddDiagnosisFragment"
+        android:label="AddDiagnosisFragment"
+        tools:layout="@layout/fragment_add_diagnosis" >
+        <argument
+            android:name="patientId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/addDoctorFragment"
+        android:name="ru.orlovegor.daoroom.ui.doctor.AddDoctorFragment"
+        android:label="AddDoctorFragment"
+        tools:layout="@layout/fragment_add_doctor" />
+    <fragment
+        android:id="@+id/addPatientFragment"
+        android:name="ru.orlovegor.daoroom.ui.patient.AddPatientFragment"
+        android:label="AddPatientFragment"
+        tools:layout="@layout/fragment_add_patient" >
+        <argument
+            android:name="doctorId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateRecordFragment"
+        android:name="ru.orlovegor.daoroom.ui.records.UpdateRecordFragment"
+        android:label="UpdateRecordFragment" >
+        <argument
+            android:name="recordId"
+            app:argType="long" />
+    </fragment>
+</navigation>

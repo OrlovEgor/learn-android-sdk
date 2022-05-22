@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">DaoRoom</string>
+    <string name="therapist">Therapist</string>
+    <string name="_10_00_12_00">10.00 – 12.00</string>
+    <string name="_3">3</string>
+    <string name="holy">Holy</string>
+    <string name="record">Record: //////</string>
+    <string name="add">add</string>
+    <string name="enter_diagnosis">Enter diagnosis</string>
+    <string name="last_name_patient">Last name patient</string>
+    <string name="first_name_patient">First name patient</string>
+    <string name="choose_hospital">Choose hospital</string>
+    <string name="choose_opening_hours">Choose opening Hours</string>
+    <string name="choose_specialization">Choose specialization</string>
+    <string name="choose_cabinet">choose_cabinet</string>
+    <string name="hospital">Hospital</string>
+    <string name="opening_hours">Opening hours</string>
+    <string name="specialization">Specialization</string>
+    <string name="cabinet">Cabinet</string>
+    <string name="error_toast">Error</string>
+    <string name="error_toast_insert">insert has been failure</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
+    <string name="doctors">Doctors</string>
+    <string name="text">Text</string>
+    <string name="therapy_text">Therapy text</string>
+    <string name="enter_therapy">Enter Therapy</string>
+</resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="?attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/doctor_first_name_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/first_names" />
+
+    <TextView
+        android:id="@+id/doctor_last_name_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/doctor_first_name_text"
+        tools:text="@tools:sample/last_names" />
+
+    <TextView
+        android:id="@+id/doctor_specialization_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="@string/therapist"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/doctor_last_name_text" />
+
+    <TextView
+        android:id="@+id/doctor_opening_hours_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="@string/_10_00_12_00"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/doctor_specialization_text" />
+
+    <TextView
+        android:id="@+id/doctor_cabinet_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="@string/_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/doctor_opening_hours_text" />
+
+    <TextView
+        android:id="@+id/doctor_hospital_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="@string/holy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/doctor_cabinet_text" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

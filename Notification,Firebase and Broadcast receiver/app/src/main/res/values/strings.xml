@@ -3,4 +3,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="content_tittle_message">\"From : \"</string>
     <string name="content_text_message">\"Description : \"</string>
+    <string name="start">Start</string>
+    <string name="navigate">Navigate</string>
+    <string name="check_internet">Check connection to internet</string>
 </resources>

@@ -1,10 +1,11 @@
-package ru.orlovegor.notificationapp
+package ru.orlovegor.notificationapp.data
 
 import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Intent
 import android.graphics.Bitmap
 import android.media.RingtoneManager
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.bumptech.glide.Glide
@@ -14,7 +15,8 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import ru.orlovegor.notificationapp.data.*
+import ru.orlovegor.notificationapp.MainActivity
+import ru.orlovegor.notificationapp.R
 import ru.orlovegor.notificationapp.ui.NotificationChannels
 
 class MessagingService : FirebaseMessagingService() {
@@ -25,10 +27,11 @@ class MessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
+        Log.d("Message", "send message")
         val result =
             message.data["type"]?.let { type ->
                 message.data["data"]?.let { data ->
-                    NotificationParser.Base().parseNotification(type, data)
+                    Repository(this).parseNotification(type, data)
                 }
             }
         when (result) {
@@ -37,7 +40,6 @@ class MessagingService : FirebaseMessagingService() {
             null -> return
         }
     }
-
 
     private fun showMessageNotification(message: NotificationMessages.ChatMessage) {
         val notification = NotificationCompat.Builder(this, NotificationChannels.CHAT_MESSAGE_ID)
@@ -65,15 +67,15 @@ class MessagingService : FirebaseMessagingService() {
             .notify(PROMO_NOTIFICATION_ID, notification)
     }
 
-    private fun createPendingIntent() = PendingIntent.getActivity(this, 123, Intent(this, MainActivity::class.java), 0)
+    private fun createPendingIntent() = PendingIntent.getActivity(
+        this, 123, Intent(this, MainActivity::class.java), 0
+    )
 
     @SuppressLint("CheckResult")
     private fun loadBitmapWithGlide(url: String): Bitmap? {
         var bitmap: Bitmap? = null
         Glide.with(this)
             .asBitmap()
-            .placeholder(R.drawable.ic_error_24)
-            .error(R.drawable.ic_error_24)
             .load(url)
             .listener(object : RequestListener<Bitmap> {
                 override fun onLoadFailed(

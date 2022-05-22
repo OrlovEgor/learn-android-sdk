@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="ru.orlovegor.notificationapp.MainFragment"
+        android:name="ru.orlovegor.notificationapp.ui.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/receiveFragment"
-        android:name="ru.orlovegor.notificationapp.ReceiveFragment"
+        android:name="ru.orlovegor.notificationapp.ui.ReceiveFragment"
         android:label="fragment_receive"
         tools:layout="@layout/fragment_receive" />
 </navigation>

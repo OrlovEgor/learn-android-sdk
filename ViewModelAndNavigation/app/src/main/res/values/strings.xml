@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Homework 19</string>
+    <string name="aggressive_text">Is aggressive? :</string>
+    <string name="hint_name_animal">Enter name animal</string>
+    <string name="hint_age_animal">Enter age this animal</string>
+    <string name="text_wild_checkbox">Is wild?</string>
+    <string name="text_aggressive_checkbox">Aggressive?</string>
+    <string name="text_ok">Ok</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_empty_list_animal">List of animals is empty</string>
+    <string name="text_age">Age: </string>
+    <string name="text_yes">Yes</string>
+    <string name="text_no">No</string>
+    <string name="yes">yes</string>
+    <string name="remove_animal">Animal removed</string>
+    <string name="detail_information">Detail information</string>
+</resources>

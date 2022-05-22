@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/animalListFragment">
+
+    <fragment
+        android:id="@+id/animalListFragment"
+        android:name="com.skillbox.homework19.AnimalListFragment"
+        android:label="AnimalListFragment"
+        tools:layout="@layout/fragment_list_animal">
+        <action
+            android:id="@+id/action_animalListFragment_to_animalDialogFragment"
+            app:destination="@id/animalDialogFragment" />
+        <action
+            android:id="@+id/action_animalListFragment_to_animalDetailFragment"
+            app:destination="@id/animalDetailFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/animalDialogFragment"
+        android:name="com.skillbox.homework19.AnimalDialogFragment"
+        android:label="AnimalDialogFragment"
+        tools:layout="@layout/fragment_dialog_animal">
+        <action
+            android:id="@+id/action_animalDialogFragment_to_animalListFragment2"
+            app:destination="@id/animalListFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/animalDetailFragment"
+        android:name="com.skillbox.homework19.AnimalDetailFragment"
+        android:label="AnimalDetailFragment">
+        <argument
+            android:name="id"
+            app:argType="long" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
+</navigation>

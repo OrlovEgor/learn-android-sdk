@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/contactListFragment">
+
+    <fragment
+        android:id="@+id/contactListFragment"
+        android:name="ru.orlovegor.contentprovider.ui.listContacts.ContactListFragment"
+        android:label="ContactListFragment"
+        tools:layout="@layout/fragment_contact_list">
+        <action
+            android:id="@+id/action_contactListFragment_to_contactDetailInfoFragment"
+            app:destination="@id/contactDetailInfoFragment" />
+        <action
+            android:id="@+id/action_contactListFragment_to_contactCreatingFragment"
+            app:destination="@id/contactCreatingFragment" />
+        <action
+            android:id="@+id/action_contactListFragment_to_downloadFragment"
+            app:destination="@id/downloadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactDetailInfoFragment"
+        android:name="ru.orlovegor.contentprovider.ui.detailInfo.ContactDetailInfoFragment"
+        android:label="ContactDetailInfoFragment"
+        tools:layout="@layout/fragment_contact_detail_info">
+        <argument
+            android:name="contact"
+            app:argType="ru.orlovegor.contentprovider.data.Contact" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactCreatingFragment"
+        android:name="ru.orlovegor.contentprovider.ui.creating.ContactCreatingFragment"
+        android:label="ContactCreatingFragment"
+        tools:layout="@layout/fragment_contact_creating" />
+    <fragment
+        android:id="@+id/downloadFragment"
+        android:name="ru.orlovegor.contentprovider.download.DownloadFragment"
+        android:label="DownloadFragment"
+        tools:layout="@layout/fragment_download" />
+</navigation>

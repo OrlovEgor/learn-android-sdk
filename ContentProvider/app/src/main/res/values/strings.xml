@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Content provider</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="contact_permissions_never_ask_again">Get access to use contact</string>
+    <string name="contact_permissions_denied">Reading contacts is prohibited</string>
+    <string name="delete_contact">Delete contact</string>
+    <string name="delete_contact_successful">Contact deleted </string>
+    <string name="delete_contact_failed">an error occurred while deleting a contact </string>
+    <string name="enter_first_name">Enter first name</string>
+    <string name="enter_name">Enter name</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="enter_email_address">Enter Email address</string>
+    <string name="add_contact">Add contact</string>
+    <string name="wrong_email_toast">the email address is incorrect, contact has not been saved</string>
+    <string name="save_contact_successful">contact has been saved</string>
+    <string name="save_contact_exception">save contact has been failed</string>
+    <string name="download_fragment">Download Fragment</string>
+    <string name="download">download</string>
+    <string name="share_file">share file</string>
+    <string name="error_toast">error</string>
+</resources>

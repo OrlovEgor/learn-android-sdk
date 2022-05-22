@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">clientProvider</string>
+    <string name="get_all_courses">get all courses</string>
+    <string name="get_courses_by_id">get courses by id</string>
+    <string name="add_course">add course</string>
+    <string name="delete_course_by_id">delete course by id</string>
+    <string name="delete_all_courses">delete all courses</string>
+    <string name="update_course_by_id">update course by id</string>
+    <string name="fsdfsd">fsdfsd</string>
+    <string name="toast_error">content provider not found</string>
+    <string name="id">id</string>
+    <string name="tittle">tittle</string>
+    <string name="toast_error_empty">Input Error</string>
+</resources>

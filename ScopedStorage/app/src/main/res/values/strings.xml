@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">VideoStorage</string>
+    <string name="error_toast">Error</string>
+    <string name="permission_not_received">permission not received</string>
+    <string name="video_name">video name</string>
+    <string name="video_url">video URL</string>
+    <string name="download">Download</string>
+
+</resources>

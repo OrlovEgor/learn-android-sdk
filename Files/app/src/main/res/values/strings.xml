@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Files</string>
+    <string name="url">Url</string>
+    <string name="download">Download</string>
+    <string name="already_downloaded_toast">The file has already been downloaded</string>
+    <string name="file_downloaded">File downloaded</string>
+    <string name="already_downloaded">The file has already been downloaded </string>
+</resources>

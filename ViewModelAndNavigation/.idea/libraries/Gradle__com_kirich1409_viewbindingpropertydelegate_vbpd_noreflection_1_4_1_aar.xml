@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:1.4.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/AppData/Local/Android/Sdk/caches/transforms-2/files-2.1/b4a1a6c4f8904f586929ad591bcd24fd/jetified-vbpd-noreflection-1.4.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/AppData/Local/Android/Sdk/caches/transforms-2/files-2.1/b4a1a6c4f8904f586929ad591bcd24fd/jetified-vbpd-noreflection-1.4.1/res" />
+      <root url="file://$USER_HOME$/AppData/Local/Android/Sdk/caches/transforms-2/files-2.1/b4a1a6c4f8904f586929ad591bcd24fd/jetified-vbpd-noreflection-1.4.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/AppData/Local/Android/Sdk/caches/modules-2/files-2.1/com.kirich1409.viewbindingpropertydelegate/vbpd-noreflection/1.4.1/ff81a4a51ad73b9053bdc821883ca201b355a20/vbpd-noreflection-1.4.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

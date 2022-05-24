@@ -1,6 +1,5 @@
 package ru.orlovegor.notificationapp.ui
 
-import android.annotation.SuppressLint
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
@@ -11,41 +10,34 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.orlovegor.notificationapp.R
 import ru.orlovegor.notificationapp.data.NetworkBroadcastReceiver
-import ru.orlovegor.notificationapp.data.Repository
 
-class ReceiveFragment : Fragment(R.layout.fragment_receive), ConnectionStatus {
+
+class ReceiveFragment : Fragment(R.layout.fragment_receive) {
 
     private lateinit var networkReceiver: NetworkBroadcastReceiver
-
     private val connectionStatus: Boolean
-    get() = networkReceiver.status
+        get() = networkReceiver.status
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         networkReceiver = NetworkBroadcastReceiver()
         val button = view.findViewById<Button>(R.id.start_button)
         button.setOnClickListener {
-           setButton()
+            Log.d("STATUS", "status = $connectionStatus")
+            if (!connectionStatus) {
+                Toast.makeText(requireContext(), R.string.check_internet, Toast.LENGTH_LONG).show()
+            } else {
+                showProgressNotification()
+            }
         }
     }
 
-    private fun setButton(){
-        Log.d("STATUS", "status = $connectionStatus")
-        if (!connectionStatus)
-        {Toast.makeText(requireContext(), R.string.check_internet, Toast.LENGTH_LONG).show()}
-        else {
-            showProgressNotification()
-        }
-    }
-
-
-    private fun showProgressNotification(){
+    private fun showProgressNotification() {
         val notificationBuilder = NotificationCompat.Builder(
             requireContext(),
             NotificationChannels.CHAT_MESSAGE_ID
@@ -53,9 +45,9 @@ class ReceiveFragment : Fragment(R.layout.fragment_receive), ConnectionStatus {
             .setContentTitle("Update downloading")
             .setContentText("Download in progress")
             .setPriority(NotificationCompat.PRIORITY_LOW)
-            .setSmallIcon(com.google.android.material.R.drawable.ic_clock_black_24dp)
-
+            .setSmallIcon(R.drawable.ic_emotions_24)
         val maxProgress = 10
+        hideButton(view?.findViewById(R.id.start_button), false)
         lifecycleScope.launch {
             (0 until maxProgress).forEach { progress ->
                 val notification = notificationBuilder
@@ -79,16 +71,13 @@ class ReceiveFragment : Fragment(R.layout.fragment_receive), ConnectionStatus {
 
             NotificationManagerCompat.from(requireContext())
                 .cancel(PROGRESS_NOTIFICATION_ID)
-
+            hideButton(view?.findViewById(R.id.start_button), true)
         }
     }
 
-
-
-    private fun hideButton(button: Button){
-
+    private fun hideButton(button: Button?, isActive: Boolean) {
+        button?.isEnabled = isActive
     }
-
 
     override fun onResume() {
         super.onResume()
@@ -103,13 +92,7 @@ class ReceiveFragment : Fragment(R.layout.fragment_receive), ConnectionStatus {
         requireContext().unregisterReceiver(networkReceiver)
     }
 
-    override fun getStatus(status: Boolean) {
-        Log.d("STATUS", "interfaceStatus = $status")
-       // connectionStatus == status
-
-    }
-
-    companion object{
+    companion object {
         const val PROGRESS_NOTIFICATION_ID = 232
     }
 

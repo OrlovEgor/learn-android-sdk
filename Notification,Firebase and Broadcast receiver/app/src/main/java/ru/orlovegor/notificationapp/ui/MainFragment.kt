@@ -53,7 +53,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             .addOnSuccessListener { token ->
                 continuation.resume(token)
             }
-            .addOnFailureListener { exception ->
+            .addOnFailureListener {
                 continuation.resume(null)
             }
             .addOnCanceledListener {

@@ -7,11 +7,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import ru.orlovegor.notificationapp.ui.ConnectionStatus
 import ru.orlovegor.notificationapp.ui.ReceiveFragment
-import ru.orlovegor.notificationapp.ui.ReceiveViewModel
 
 class NetworkBroadcastReceiver : BroadcastReceiver() {
 
@@ -19,12 +15,8 @@ class NetworkBroadcastReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
         context ?: return
-
-        val listener = ReceiveFragment() as ConnectionStatus?
         status = checkNetworkConnection(context)
-        //listener?.getStatus(checkNetworkConnection(context))
         Log.d("CON", "On receive")
-
     }
 
     private fun checkNetworkConnection(context: Context): Boolean {
@@ -45,6 +37,5 @@ class NetworkBroadcastReceiver : BroadcastReceiver() {
             @Suppress("DEPRECATION")
             return networkInfo.isConnected
         }
-
     }
 }

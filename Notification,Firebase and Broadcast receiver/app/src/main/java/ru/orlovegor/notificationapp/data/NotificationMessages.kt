@@ -3,8 +3,10 @@ package ru.orlovegor.notificationapp.data
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
- sealed class NotificationMessages {
+sealed class NotificationMessages {
+
     @JsonClass(generateAdapter = true)
+
     data class ChatMessage(
         @Json(name = "userId")
         val userID: Long,
@@ -14,7 +16,7 @@ import com.squareup.moshi.JsonClass
         val created_at: Long,
         @Json(name = "text")
         val text: String
-    ) :NotificationMessages()
+    ) : NotificationMessages()
 
     @JsonClass(generateAdapter = true)
     data class NewPromotions(
@@ -24,6 +26,6 @@ import com.squareup.moshi.JsonClass
         val description: String,
         @Json(name = "imageUrl")
         val imageUrl: String?
-    ):NotificationMessages()
+    ) : NotificationMessages()
 
 }

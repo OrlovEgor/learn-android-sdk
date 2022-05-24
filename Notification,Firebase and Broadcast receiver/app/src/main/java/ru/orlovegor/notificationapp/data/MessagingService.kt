@@ -21,8 +21,8 @@ import ru.orlovegor.notificationapp.ui.NotificationChannels
 
 class MessagingService : FirebaseMessagingService() {
 
-    override fun onNewToken(p0: String) {
-        super.onNewToken(p0)
+    override fun onNewToken(token: String) {
+        super.onNewToken(token)
     }
 
     override fun onMessageReceived(message: RemoteMessage) {
@@ -31,7 +31,7 @@ class MessagingService : FirebaseMessagingService() {
         val result =
             message.data["type"]?.let { type ->
                 message.data["data"]?.let { data ->
-                    Repository(this).parseNotification(type, data)
+                    Repository().parseNotification(type, data)
                 }
             }
         when (result) {
@@ -67,6 +67,7 @@ class MessagingService : FirebaseMessagingService() {
             .notify(PROMO_NOTIFICATION_ID, notification)
     }
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     private fun createPendingIntent() = PendingIntent.getActivity(
         this, 123, Intent(this, MainActivity::class.java), 0
     )

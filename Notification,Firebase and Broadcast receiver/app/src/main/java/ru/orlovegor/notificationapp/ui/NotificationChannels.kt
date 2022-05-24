@@ -26,7 +26,7 @@ object NotificationChannels {
         val channelDescription = "Urgent messages"
         val priority = NotificationManager.IMPORTANCE_HIGH
 
-        val channel = NotificationChannel(CHAT_MESSAGE_ID, name,priority).apply {
+        val channel = NotificationChannel(CHAT_MESSAGE_ID, name, priority).apply {
             description = channelDescription
             setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION), null)
         }
@@ -39,13 +39,11 @@ object NotificationChannels {
         val channelDescription = "New promo"
         val priority = NotificationManager.IMPORTANCE_LOW
 
-        val channel = NotificationChannel(PROMOTION_ID, name,priority).apply {
+        val channel = NotificationChannel(PROMOTION_ID, name, priority).apply {
             description = channelDescription
         }
         NotificationManagerCompat.from(context).createNotificationChannel(channel)
     }
 
-
-
-    }
+}
 

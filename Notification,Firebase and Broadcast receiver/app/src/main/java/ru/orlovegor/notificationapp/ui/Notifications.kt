@@ -16,7 +16,6 @@ import ru.orlovegor.notificationapp.utils.loadBitmapWithGlide
 object Notifications {
 
     private const val PROMO_NOTIFICATION_ID = 1
-    private const val PROGRESS_NOTIFICATION_ID = 232
 
      fun showMessageNotification(message: NotificationMessages.ChatMessage, context: Context) {
         val notification = NotificationCompat.Builder(context, NotificationChannels.CHAT_MESSAGE_ID)

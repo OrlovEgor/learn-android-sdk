@@ -1,7 +1,5 @@
 package ru.orlovegor.notificationapp.ui
 
-import android.content.IntentFilter
-import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -12,20 +10,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import okhttp3.internal.notify
 import ru.orlovegor.notificationapp.R
-import ru.orlovegor.notificationapp.data.NetworkBroadcastReceiver
 import ru.orlovegor.notificationapp.utils.toastFragmentResId
-
 
 class ReceiveFragment : Fragment(R.layout.fragment_receive) {
 
-    private lateinit var networkReceiver: NetworkBroadcastReceiver
     private val viewModel: ReceiveViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        networkReceiver = NetworkBroadcastReceiver(viewModel)
         val button = view.findViewById<Button>(R.id.start_button)
         observeViewModelState()
         button.setOnClickListener {
@@ -79,21 +72,7 @@ class ReceiveFragment : Fragment(R.layout.fragment_receive) {
         button?.isEnabled = isActive
     }
 
-    override fun onResume() {
-        super.onResume()
-        requireContext().registerReceiver(
-            networkReceiver,
-            IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-        )
-    }
-
-    override fun onPause() {
-        super.onPause()
-        requireContext().unregisterReceiver(networkReceiver)
-    }
-
     companion object {
         const val PROGRESS_NOTIFICATION_ID = 232
     }
-
 }

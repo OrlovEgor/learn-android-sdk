@@ -7,15 +7,13 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
-import ru.orlovegor.notificationapp.ui.ReceiveFragment
+import ru.orlovegor.notificationapp.ui.ReceiveViewModel
 
-class NetworkBroadcastReceiver : BroadcastReceiver() {
-
-    var status = false
+class NetworkBroadcastReceiver(private val viewModel: ReceiveViewModel) : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
         context ?: return
-        status = checkNetworkConnection(context)
+        viewModel.setConnectionStatus(checkNetworkConnection(context))
         Log.d("CON", "On receive")
     }
 

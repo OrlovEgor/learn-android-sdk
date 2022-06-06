@@ -3,38 +3,38 @@ package ru.orlovegor.notificationapp.ui
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import okhttp3.internal.notify
 import ru.orlovegor.notificationapp.R
 import ru.orlovegor.notificationapp.data.NetworkBroadcastReceiver
+import ru.orlovegor.notificationapp.utils.toastFragmentResId
 
 
 class ReceiveFragment : Fragment(R.layout.fragment_receive) {
 
     private lateinit var networkReceiver: NetworkBroadcastReceiver
-    private val connectionStatus: Boolean
-        get() = networkReceiver.status
+    private val viewModel: ReceiveViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        networkReceiver = NetworkBroadcastReceiver()
+        networkReceiver = NetworkBroadcastReceiver(viewModel)
         val button = view.findViewById<Button>(R.id.start_button)
+        observeViewModelState()
         button.setOnClickListener {
-            Log.d("STATUS", "status = $connectionStatus")
-            if (!connectionStatus) {
-                Toast.makeText(requireContext(), R.string.check_internet, Toast.LENGTH_LONG).show()
-            } else {
-                showProgressNotification()
-            }
+            viewModel.checkStatus()
         }
+    }
+    private fun observeViewModelState(){
+        viewModel.toast.observe(viewLifecycleOwner) { toastFragmentResId(it) }
+        viewModel.showNotification.observe(viewLifecycleOwner) {showProgressNotification() }
     }
 
     private fun showProgressNotification() {

@@ -38,7 +38,6 @@ object NotificationChannels {
         val name = "Promotion"
         val channelDescription = "New promo"
         val priority = NotificationManager.IMPORTANCE_LOW
-
         val channel = NotificationChannel(PROMOTION_ID, name, priority).apply {
             description = channelDescription
         }

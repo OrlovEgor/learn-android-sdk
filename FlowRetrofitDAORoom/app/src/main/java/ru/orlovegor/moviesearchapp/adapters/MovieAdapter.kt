@@ -8,9 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.orlovegor.moviesearchapp.R
 import ru.orlovegor.moviesearchapp.data.RemoteMovie
+import ru.orlovegor.moviesearchapp.databinding.ItemMovieBinding
 
-
-/*
 class MovieAdapter : ListAdapter<RemoteMovie, MovieAdapter.Holder>(MovieDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieAdapter.Holder {
@@ -50,4 +49,4 @@ class MovieAdapter : ListAdapter<RemoteMovie, MovieAdapter.Holder>(MovieDiffUtil
         }
     }
 
-}*/
+}

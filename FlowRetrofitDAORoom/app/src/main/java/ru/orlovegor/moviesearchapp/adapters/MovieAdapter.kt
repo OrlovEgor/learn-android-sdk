@@ -48,5 +48,4 @@ class MovieAdapter : ListAdapter<RemoteMovie, MovieAdapter.Holder>(MovieDiffUtil
             }
         }
     }
-
 }

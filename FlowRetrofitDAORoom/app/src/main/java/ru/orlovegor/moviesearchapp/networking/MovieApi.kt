@@ -7,6 +7,7 @@ import ru.orlovegor.moviesearchapp.data.RemoteMovie
 interface MovieApi {
     @GET("/")
    suspend fun getMovieByTittle(
-        @Query("s") tittle: String
+        @Query("s") tittle: String,
+        @Query("type") type: String,
     ): List<RemoteMovie>
 }

@@ -2,12 +2,18 @@ package ru.orlovegor.moviesearchapp.utils
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.EditText
 import android.widget.RadioGroup
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
+import ru.orlovegor.moviesearchapp.R
+import ru.orlovegor.moviesearchapp.data.MovieTypes
 
 fun EditText.textChangedFlow(): Flow<String> {
     return callbackFlow {
@@ -35,7 +41,25 @@ fun RadioGroup.checkedChangesFlow(): Flow<Int> {
         }
         setOnCheckedChangeListener(checkedChangeListener)
         awaitClose {
-            setOnCheckedChangeListener (null)
+            setOnCheckedChangeListener(null)
         }
     }
 }
+
+
+/*private fun flowFromGroupChanged(): Flow<MovieTypes> {
+    viewLifecycleOwner.lifecycleScope.launch {
+        Log.d("TAG", "fragment flowGroupChanged start")
+        callbackFlow {
+            binding.movieTypeRadioGroup.checkedChangesFlow()
+                .map {
+                    when (it) {
+                        R.id.radio_button_movie -> MovieTypes.MOVIE
+                        R.id.radio_button_episode -> MovieTypes.EPISODE
+                        R.id.radio_button_series -> MovieTypes.SERIES
+                        else -> {}
+                    }
+                }
+        }
+    }
+}*/

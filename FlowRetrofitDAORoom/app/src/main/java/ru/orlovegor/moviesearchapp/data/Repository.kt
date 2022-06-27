@@ -7,8 +7,7 @@ import ru.orlovegor.moviesearchapp.networking.Network
 
 class Repository {
 
-    suspend fun getMovie(tittle: String): List<RemoteMovie> =
-        withContext(Dispatchers.IO) {
-            Network.movieApi.getMovieByTittle(tittle)
-        }
+    suspend fun getMovie(tittle: String, type: String): List<RemoteMovie> =
+         Network.movieApi.getMovieByTittle(tittle, type)
+
 }

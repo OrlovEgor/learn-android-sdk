@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.orlovegor.moviesearchapp.R
@@ -21,6 +23,7 @@ import ru.orlovegor.moviesearchapp.utils.checkedChangesFlow
 import ru.orlovegor.moviesearchapp.utils.textChangedFlow
 
 
+
 class MovieSearchFragment : Fragment(R.layout.fragment_movie_search) {
 
     private val binding: FragmentMovieSearchBinding by viewBinding()
@@ -29,29 +32,58 @@ class MovieSearchFragment : Fragment(R.layout.fragment_movie_search) {
 
     private val viewModel: MovieViewModel by viewModels()
 
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initList()
-        viewModel.bind(flowFromEditText(), flowFromGroupChanged())
+        viewLifecycleOwner.lifecycleScope.launch {
+            sendDataToViewModel()
+        }
+        observeViewModelState()
     }
 
-    private fun flowFromGroupChanged(): Flow<MovieTypes> {
-        return callbackFlow {
+
+    private fun sendDataToViewModel(){
+        viewModel.bind(
+            binding.searchEditText.textChangedFlow(),
             binding.movieTypeRadioGroup.checkedChangesFlow()
                 .map {
                     when (it) {
                         R.id.radio_button_movie -> MovieTypes.MOVIE
                         R.id.radio_button_episode -> MovieTypes.EPISODE
                         R.id.radio_button_series -> MovieTypes.SERIES
-                        else -> {}
+                        else -> {MovieTypes.MOVIE}
                     }
                 }
-        }
+        )
+    }
+    private fun flowFromGroupChanged(): Flow<MovieTypes> {
+            Log.d("TAG", "fragment flowGroupChanged start")
+          return   callbackFlow {
+                  binding.movieTypeRadioGroup.checkedChangesFlow()
+                      .map {
+                          when (it) {
+                              R.id.radio_button_movie -> MovieTypes.MOVIE
+                              R.id.radio_button_episode -> MovieTypes.EPISODE
+                              R.id.radio_button_series -> MovieTypes.SERIES
+                              else -> {}
+                          }
+                      }
+              awaitClose { channel.close() }
+          }
     }
 
     private fun flowFromEditText() : Flow<String> = callbackFlow{
-     binding.searchEditText.textChangedFlow()
-         .map { it }
+            Log.d("TAG", "fragment flowFromEdittextStart")
+            binding.searchEditText.textChangedFlow()
+                .map { it }
+
+    }
+
+    private fun observeViewModelState(){
+        viewModel.listMovie.observe(viewLifecycleOwner){movieListAdapter.submitList(it)}
     }
 
 
@@ -62,5 +94,10 @@ class MovieSearchFragment : Fragment(R.layout.fragment_movie_search) {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
         }
+    }
+
+    override fun onDestroy() {
+        viewModel.cancelJob()
+        super.onDestroy()
     }
 }

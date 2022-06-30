@@ -7,6 +7,8 @@ import android.widget.EditText
 import android.widget.RadioGroup
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.onFailure
+import kotlinx.coroutines.channels.onSuccess
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -21,7 +23,9 @@ fun EditText.textChangedFlow(): Flow<String> {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                trySendBlocking(s?.toString().orEmpty())
+                trySendBlocking(s?.toString().orEmpty()
+                ).onFailure { Log.d("TAG", "error textChangedFlow") }
+
             }
 
             override fun afterTextChanged(p0: Editable?) {}

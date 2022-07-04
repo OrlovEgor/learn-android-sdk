@@ -2,7 +2,6 @@ package ru.orlovegor.moviesearchapp.data
 
 import android.util.Log
 import com.squareup.moshi.JsonDataException
-
 import ru.orlovegor.moviesearchapp.networking.Network
 
 class Repository {

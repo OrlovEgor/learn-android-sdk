@@ -59,33 +59,10 @@ class MovieSearchFragment : Fragment(R.layout.fragment_movie_search) {
                 }
         )
     }
-    private fun flowFromGroupChanged(): Flow<MovieTypes> {
-            Log.d("TAG", "fragment flowGroupChanged start")
-          return   callbackFlow {
-                  binding.movieTypeRadioGroup.checkedChangesFlow()
-                      .map {
-                          when (it) {
-                              R.id.radio_button_movie -> MovieTypes.MOVIE
-                              R.id.radio_button_episode -> MovieTypes.EPISODE
-                              R.id.radio_button_series -> MovieTypes.SERIES
-                              else -> {}
-                          }
-                      }
-              awaitClose { channel.close() }
-          }
-    }
-
-    private fun flowFromEditText() : Flow<String> = callbackFlow{
-            Log.d("TAG", "fragment flowFromEdittextStart")
-            binding.searchEditText.textChangedFlow()
-                .map { it }
-
-    }
 
     private fun observeViewModelState(){
         viewModel.listMovie.observe(viewLifecycleOwner){movieListAdapter.submitList(it)}
     }
-
 
     private fun initList() {
         movieListAdapter = MovieAdapter()

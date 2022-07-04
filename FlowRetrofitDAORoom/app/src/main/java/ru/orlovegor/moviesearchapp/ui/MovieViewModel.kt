@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import ru.orlovegor.moviesearchapp.R
@@ -26,17 +25,17 @@ class MovieViewModel : ViewModel() {
 
 
         fun bind(queryFlow: Flow<String>, movieTypeFlow: Flow<MovieTypes>) {
-        scope = CoroutineScope(Dispatchers.IO )
+        scope = CoroutineScope(Dispatchers.Default )
         combine(
             queryFlow,
             movieTypeFlow
         )
         { query, type -> query to type }
-            .debounce(2000)
+            .debounce(3000)
             .onEach { Log.d("TAG", "${it.first}, ${it.second.name}") }
-            .flowOn(Dispatchers.IO)
             .mapLatest {
                 _listMovie.postValue(repository.getMovie(it.first, it.second.name.lowercase())) }
+            .flowOn(Dispatchers.IO)
             .catch {
                 Log.d("TAG", "errorBind2 = $it}")
                 _toast.postValue(R.string.input_error)

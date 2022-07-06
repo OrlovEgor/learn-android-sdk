@@ -1,22 +1,17 @@
-package ru.orlovegor.moviesearchapp.ui
+package ru.orlovegor.moviesearchapp.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.orlovegor.moviesearchapp.R
 import ru.orlovegor.moviesearchapp.adapters.MovieAdapter
-import ru.orlovegor.moviesearchapp.data.MovieTypes
-import ru.orlovegor.moviesearchapp.data.Repository
+import ru.orlovegor.moviesearchapp.data.models.MovieTypes
 import ru.orlovegor.moviesearchapp.databinding.FragmentMovieSearchBinding
 import ru.orlovegor.moviesearchapp.utils.autoCleared
 import ru.orlovegor.moviesearchapp.utils.checkedChangesFlow
@@ -54,7 +49,8 @@ class MovieSearchFragment : Fragment(R.layout.fragment_movie_search) {
                         R.id.radio_button_movie -> MovieTypes.MOVIE
                         R.id.radio_button_episode -> MovieTypes.EPISODE
                         R.id.radio_button_series -> MovieTypes.SERIES
-                        else -> {MovieTypes.MOVIE}
+                        else -> {
+                            MovieTypes.MOVIE}
                     }
                 }
         )

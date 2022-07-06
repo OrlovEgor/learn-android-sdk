@@ -7,5 +7,6 @@ object MovieContract {
         const val ID = "movie_id"
         const val TITTLE = "tittle"
         const val IMAGE_URL = "image_url"
+        const val MOVIE_TYPE = "movie_type"
     }
 }

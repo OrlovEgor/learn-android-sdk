@@ -2,7 +2,7 @@ package ru.orlovegor.moviesearchapp.networking
 
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ru.orlovegor.moviesearchapp.data.RemoteMovie
+import ru.orlovegor.moviesearchapp.data.models.RemoteMovie
 
 interface MovieApi {
     @GET("/")

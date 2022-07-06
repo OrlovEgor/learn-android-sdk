@@ -4,4 +4,5 @@
     <string name="series">Series</string>
     <string name="episode">Episode</string>
     <string name="input_error">Input error</string>
+    <string name="error"> Error</string>
 </resources>

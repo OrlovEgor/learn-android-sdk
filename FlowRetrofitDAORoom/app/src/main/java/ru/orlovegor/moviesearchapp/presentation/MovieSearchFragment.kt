@@ -33,28 +33,27 @@ class MovieSearchFragment : Fragment(R.layout.fragment_movie_search) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initList()
-        viewLifecycleOwner.lifecycleScope.launch {
-            sendDataToViewModel()
-        }
+        sendDataToViewModel()
         observeViewModelState()
     }
 
 
     private fun sendDataToViewModel(){
-        viewModel.bind(
-            binding.searchEditText.textChangedFlow(),
-            binding.movieTypeRadioGroup.checkedChangesFlow()
-                .map {
-                    when (it) {
-                        R.id.radio_button_movie -> MovieTypes.MOVIE
-                        R.id.radio_button_episode -> MovieTypes.EPISODE
-                        R.id.radio_button_series -> MovieTypes.SERIES
-                        else -> {
-                            MovieTypes.MOVIE}
+            viewModel.bind(
+                binding.searchEditText.textChangedFlow(),
+                binding.movieTypeRadioGroup.checkedChangesFlow()
+                    .map {
+                        when (it) {
+                            R.id.radio_button_movie -> MovieTypes.MOVIE
+                            R.id.radio_button_episode -> MovieTypes.EPISODE
+                            R.id.radio_button_series -> MovieTypes.SERIES
+                            else -> {
+                                MovieTypes.MOVIE
+                            }
+                        }
                     }
-                }
-        )
-    }
+            )
+        }
 
     private fun observeViewModelState(){
         viewModel.listMovie.observe(viewLifecycleOwner){movieListAdapter.submitList(it)}

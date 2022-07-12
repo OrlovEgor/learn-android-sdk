@@ -29,13 +29,13 @@
         tools:src="@tools:sample/first_names" />
 
     <TextView
-        android:id="@+id/item_movie_description_textview"
+        android:id="@+id/item_movie_movie_type_textview"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:maxLines="5"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
-        android:textSize="16sp"
+        android:gravity="center"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/item_movie_imageView"

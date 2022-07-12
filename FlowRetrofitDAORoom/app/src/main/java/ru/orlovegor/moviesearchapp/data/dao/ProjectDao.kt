@@ -3,6 +3,7 @@ package ru.orlovegor.moviesearchapp.data.dao
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import ru.orlovegor.moviesearchapp.data.dao.ProjectDao.Companion.DB_VERSION
+import ru.orlovegor.moviesearchapp.data.models.LocalMovie
 
 @Database(
     entities = [

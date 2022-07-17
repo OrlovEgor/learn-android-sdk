@@ -14,15 +14,19 @@ class Repository() {
     private val remoteDataSource = RemoteDataSource()
     private val localDataSource = LocalDataSource()
 
-     suspend fun saveMovie(movie: List<LocalMovie>) {
+    suspend fun saveMovie(movie: List<LocalMovie>) {
         withContext(Dispatchers.IO) {
             localDataSource.insertMovies(movie)
         }
     }
+
     suspend fun getLocalMovie(tittle: String, movieTypes: MovieTypes) =
-        withContext(Dispatchers.IO){
-            localDataSource.getMovie(tittle,movieTypes)
+        withContext(Dispatchers.IO) {
+            localDataSource.getMovie(tittle, movieTypes)
         }
+
+     fun getAllLocalMovie() = localDataSource.getAllMovie()
+
 
     suspend fun testApiRequest(
         tittle: String,
@@ -35,8 +39,8 @@ class Repository() {
         return try {
             ResultWrapper.Success(call.invoke())
         } catch (t: IOException) {
-                ResultWrapper.NetworkError
-        } catch (t: Throwable){
+            ResultWrapper.NetworkError
+        } catch (t: Throwable) {
             ResultWrapper.Error(t)
         }
     }

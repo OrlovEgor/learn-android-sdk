@@ -39,14 +39,7 @@ class MovieViewModel : ViewModel() {
         { query, type -> query to type }
             .debounce(3000)
             .onEach { Log.d("TAG", "${it.first}, ${it.second.name}") }
-
-            .catch {
-                Log.d("TAG", "error Bind 1 = $it}")
-                _toast.postValue(R.string.error)
-            }
-
             .mapLatest { it ->
-                //_listMovie.postValue(repository.loadMovie(it.first, it.second.name.lowercase()))
                 val data = repository.testApiRequest(it.first, it.second.name.lowercase())
                 when (data) {
                     is ResultWrapper.Success -> {
@@ -66,10 +59,6 @@ class MovieViewModel : ViewModel() {
                 }
             }
             .flowOn(Dispatchers.IO)
-            .catch {
-                Log.d("TAG", "error Bind 3 = $it}")
-                _toast.postValue(R.string.error)
-            }
             .launchIn(scope!!)
     }
 

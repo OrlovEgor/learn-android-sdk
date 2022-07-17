@@ -5,4 +5,6 @@
     <string name="episode">Episode</string>
     <string name="input_error">Input error</string>
     <string name="error"> Error</string>
+    <string name="local">Local</string>
+    <string name="remote">Remote</string>
 </resources>

@@ -3,11 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/movieSearchFragment">
+    app:startDestination="@id/movieSearchFragment1">
 
     <fragment
-        android:id="@+id/movieSearchFragment"
+        android:id="@+id/movieSearchFragment1"
         android:name="ru.orlovegor.moviesearchapp.presentation.MovieSearchFragment"
         android:label="MovieSearchFragment"
-        tools:layout = "@layout/fragment_movie_search"/>
+        tools:layout="@layout/fragment_movie_search" />
+    <fragment
+        android:id="@+id/localMovieFragment2"
+        android:name="ru.orlovegor.moviesearchapp.presentation.LocalMovieFragment"
+        android:label="LocalMovieFragment"
+        tools:layout="@layout/fragment_local_movie" />
+
 </navigation>

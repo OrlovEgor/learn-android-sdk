@@ -1,10 +1,7 @@
 package ru.orlovegor.moviesearchapp.presentation
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import ru.orlovegor.moviesearchapp.R
@@ -14,21 +11,21 @@ import ru.orlovegor.moviesearchapp.data.models.MovieTypes
 import ru.orlovegor.moviesearchapp.data.models.mapToLocalMovie
 import ru.orlovegor.moviesearchapp.data.models.mapToMovie
 import ru.orlovegor.moviesearchapp.utils.ResultWrapper
-import java.io.IOException
 
 class MovieViewModel : ViewModel() {
     private var scope: CoroutineScope? = null
     private val repository = Repository()
 
-    private val _toast = MutableLiveData<Int>()
-    private val _listMovie = MutableLiveData<List<Movie>>()
+    private val _toast = MutableSharedFlow<Int>()
+    private val _listMovie: MutableStateFlow<List<Movie>> = MutableStateFlow(listOf())
+    private val _isProgress = MutableStateFlow(false)
 
-    val toast: LiveData<Int>
-        get() = _toast
-    val listMovie: LiveData<List<Movie>>
-        get() = _listMovie
+    val toast = _toast.asSharedFlow()
+    val listMovie = _listMovie.asStateFlow()
+    val isProgress = _isProgress.asStateFlow()
 
-
+    @FlowPreview
+    @ExperimentalCoroutinesApi
     fun bind(queryFlow: Flow<String>, movieTypeFlow: Flow<MovieTypes>) {
 
         scope = CoroutineScope(Dispatchers.Main) + SupervisorJob()
@@ -37,31 +34,31 @@ class MovieViewModel : ViewModel() {
             movieTypeFlow
         )
         { query, type -> query to type }
-            .debounce(3000)
-            .onEach { Log.d("TAG", "${it.first}, ${it.second.name}") }
+            .onEach { _isProgress.value = true }
+            .debounce(1000)
             .mapLatest { it ->
-                val data = repository.testApiRequest(it.first, it.second.name.lowercase())
-                when (data) {
+                when (val data = repository.fetchMovie(it.first, it.second.name.lowercase())) {
                     is ResultWrapper.Success -> {
-                        Log.d("TAG", " ${data.value.toString()}")
-                        _listMovie.postValue(data.value.map { it.mapToMovie() })
+                        Log.d("TAG", " ${data.value}")
+                        _listMovie.emit((data.value.map { it.mapToMovie() }))
                         repository.saveMovie(data.value.map { it.mapToLocalMovie() })
                     }
                     is ResultWrapper.NetworkError -> {
-                        _listMovie.postValue(
-                            repository.getLocalMovie(it.first, it.second).map { it.mapToMovie() })
+                        _listMovie.emit((repository.getLocalMovie(it.first, it.second)
+                            .map { it.mapToMovie() }))
+                        _toast.emit(R.string.connect_error)
                         Log.d("TAG", "NETWORK ERROR")
                     }
                     is ResultWrapper.Error -> {
                         Log.d("TAG", "ERROR -> ${data.exception?.message}")
-                        _toast.postValue(R.string.input_error)
+                        _toast.emit(R.string.input_error)
                     }
                 }
             }
+            .onEach { _isProgress.value = false }
             .flowOn(Dispatchers.IO)
             .launchIn(scope!!)
     }
-
 
     fun cancelJob() {
         scope?.cancel()

@@ -1,6 +1,5 @@
 package ru.orlovegor.moviesearchapp.adapters
 
-
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

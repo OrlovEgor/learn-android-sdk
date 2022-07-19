@@ -1,6 +1,5 @@
 package ru.orlovegor.moviesearchapp.networking
 
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 import ru.orlovegor.moviesearchapp.data.models.RemoteMovie

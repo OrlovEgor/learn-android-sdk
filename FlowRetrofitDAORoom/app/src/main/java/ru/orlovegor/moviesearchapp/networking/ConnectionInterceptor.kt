@@ -20,7 +20,7 @@ class ConnectionInterceptor(context: Context) : Interceptor {
             chain.proceed(originalRequest)
         }
     }
-
+    @Suppress("DEPRECATION")
     private fun isConnected(): Boolean {
         val connectivityManager =
             _context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

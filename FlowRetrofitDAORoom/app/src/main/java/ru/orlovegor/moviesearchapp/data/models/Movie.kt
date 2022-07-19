@@ -6,10 +6,4 @@ data class Movie(
     val movieType: MovieTypes,
     val imageUrl: String?
 )
-fun Movie.mapToLocalMovie() =
-    LocalMovie(
-        id = this.id,
-        title = this.title,
-        movieType = this.movieType,
-        imageUrl = this.imageUrl
-    )
+

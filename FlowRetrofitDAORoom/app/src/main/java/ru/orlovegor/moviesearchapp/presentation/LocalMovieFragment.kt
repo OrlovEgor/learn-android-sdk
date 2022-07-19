@@ -38,7 +38,7 @@ class LocalMovieFragment : Fragment(R.layout.fragment_local_movie) {
 
     private fun observeViewModelSate() {
         lifecycleScope.launchWhenStarted {
-            viewModel.listMovie.collect() {
+            viewModel.listMovie.collect {
                 movieListAdapter.submitList(it)
             }
         }

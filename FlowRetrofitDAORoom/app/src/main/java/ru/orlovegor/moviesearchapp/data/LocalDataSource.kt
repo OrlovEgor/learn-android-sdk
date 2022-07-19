@@ -5,7 +5,6 @@ import ru.orlovegor.moviesearchapp.data.dao.Database
 import ru.orlovegor.moviesearchapp.data.models.LocalMovie
 import ru.orlovegor.moviesearchapp.data.models.MovieTypes
 
-
 class LocalDataSource {
     private val movieDao = Database.instance.movieDao()
 

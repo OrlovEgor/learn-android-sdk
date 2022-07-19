@@ -12,14 +12,14 @@ import ru.orlovegor.moviesearchapp.databinding.ItemMovieBinding
 
 class MovieAdapter : ListAdapter<Movie, MovieAdapter.Holder>(MovieDiffUtil()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieAdapter.Holder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemMovieBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
         return Holder(binding)
     }
 
-    override fun onBindViewHolder(holder: MovieAdapter.Holder, position: Int) {
+    override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.bind(getItem(position))
     }
 

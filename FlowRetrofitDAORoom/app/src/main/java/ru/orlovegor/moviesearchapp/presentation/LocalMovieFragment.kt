@@ -7,7 +7,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
-import kotlinx.coroutines.launch
 import ru.orlovegor.moviesearchapp.R
 import ru.orlovegor.moviesearchapp.adapters.MovieAdapter
 import ru.orlovegor.moviesearchapp.databinding.FragmentLocalMovieBinding
@@ -37,8 +36,8 @@ class LocalMovieFragment : Fragment(R.layout.fragment_local_movie) {
         }
     }
 
-   private fun observeViewModelSate() {
-        lifecycleScope.launch {
+    private fun observeViewModelSate() {
+        lifecycleScope.launchWhenStarted {
             viewModel.listMovie.collect() {
                 movieListAdapter.submitList(it)
             }

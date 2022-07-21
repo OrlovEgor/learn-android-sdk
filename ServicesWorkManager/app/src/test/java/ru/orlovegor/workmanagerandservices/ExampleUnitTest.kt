@@ -1,4 +1,4 @@
-package ru.OrlovEgor.workmanagerandservices
+package ru.orlovegor.workmanagerandservices
 
 import org.junit.Test
 

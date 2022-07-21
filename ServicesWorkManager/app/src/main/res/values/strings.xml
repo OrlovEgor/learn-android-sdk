@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">WorkManagerAndServices</string>
+    <string name="url">URL</string>
+    <string name="start">Start</string>
+    <string name="waiting_for_download_to_start">waiting for download to start</string>
+    <string name="retry">Retry</string>
+    <string name="error">Error</string>
+    <string name="stop_downloading">stop downloading</string>
 </resources>

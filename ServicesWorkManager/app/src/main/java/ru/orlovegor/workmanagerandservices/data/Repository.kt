@@ -2,10 +2,13 @@ package ru.orlovegor.workmanagerandservices.data
 
 import android.content.Context
 import android.os.Environment
+import androidx.lifecycle.LiveData
+import androidx.work.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.lang.RuntimeException
+import java.util.concurrent.TimeUnit
 
 class Repository(context: Context) {
     private val repoContext = context
@@ -37,5 +40,33 @@ class Repository(context: Context) {
                     }
             }
         }
+    }
+
+    fun startDownload(url: String): LiveData<MutableList<WorkInfo>> {
+        val workData = workDataOf(
+            DownloadWorker.DOWNLOAD_URL_KEY to url
+        )
+        val workConstraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .setRequiresBatteryNotLow(true)
+            .build()
+
+        val workRequest = OneTimeWorkRequestBuilder<DownloadWorker>()
+            .setInputData(workData)
+            .setConstraints(workConstraints)
+            .setBackoffCriteria(BackoffPolicy.LINEAR, 20, TimeUnit.SECONDS)
+            .build()
+
+        WorkManager.getInstance(repoContext)
+            .enqueueUniqueWork(WORKER_ID, ExistingWorkPolicy.REPLACE, workRequest)
+        return WorkManager.getInstance(repoContext).getWorkInfosForUniqueWorkLiveData(WORKER_ID)
+    }
+
+    fun stopDownload() {
+        WorkManager.getInstance(repoContext).cancelUniqueWork(WORKER_ID)
+    }
+
+    companion object {
+        private const val WORKER_ID = "download_worker_1"
     }
 }

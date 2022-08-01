@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/url"
+        android:text="@string/https_ru_wallpaper_mob_org_image_downloadimage_id_34374_tag_9491"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

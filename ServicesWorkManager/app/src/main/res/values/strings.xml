@@ -6,5 +6,6 @@
     <string name="retry">Retry</string>
     <string name="error">Error</string>
     <string name="stop_downloading">stop downloading</string>
+    <string name="success">SUCCESS</string>
     <string name="https_ru_wallpaper_mob_org_image_downloadimage_id_34374_tag_9491">https://gitlab.skillbox.ru/learning_materials/android_basic/-/raw/master/README.md</string>
 </resources>

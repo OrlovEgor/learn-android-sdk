@@ -8,11 +8,7 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import ru.orlovegor.workmanagerandservices.Application
 import ru.orlovegor.workmanagerandservices.R
-import ru.orlovegor.workmanagerandservices.data.Repository
 import ru.orlovegor.workmanagerandservices.databinding.ActivityMainBinding
 import ru.orlovegor.workmanagerandservices.utils.makeToast
 
@@ -33,7 +29,6 @@ class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by viewBinding()
     private val viewModel: MainViewModel by viewModels()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,31 +38,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeViewModelState() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.progress.collect { visibility ->
-                binding.progressBar.isVisible = visibility
+        with(lifecycleScope) {
+            launchWhenStarted {
+                viewModel.progress.collect { visibility ->
+                    binding.progressBar.isVisible = visibility
+                    binding.stopDownloadingButton.isVisible = visibility
+                }
             }
-        }
-        lifecycleScope.launchWhenStarted {
-            viewModel.error.collect { visibility ->
-                binding.errorGroup.isVisible = visibility
+            launchWhenStarted {
+                viewModel.error.collect { visibility ->
+                    binding.errorGroup.isVisible = visibility
+                }
             }
-        }
-        lifecycleScope.launchWhenStarted {
-            viewModel.toast.collect { message ->
-                makeToast(message, applicationContext)
+            launchWhenStarted {
+                viewModel.toast.collect { message ->
+                    makeToast(message, applicationContext)
+                }
             }
         }
     }
 
     private fun bindButtons() {
         with(binding) {
+
             startButton.setOnClickListener {
                 viewModel.downloadFile(binding.urlEditText.text.toString())
             }
 
             errorButtonRetry.setOnClickListener {
-
+                viewModel.downloadFile(binding.urlEditText.text.toString())
             }
             stopDownloadingButton.setOnClickListener {
                 viewModel.stopDownload()

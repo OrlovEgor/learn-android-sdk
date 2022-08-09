@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">material</string>
+    <string name="movies">Movies</string>
+    <string name="favorite">Favorite</string>
+    <string name="first">First</string>
+    <string name="second">Second</string>
+    <string name="third">Third</string>
+    <string name="_2">2</string>
+    <string name="thirds">3</string>
+</resources>

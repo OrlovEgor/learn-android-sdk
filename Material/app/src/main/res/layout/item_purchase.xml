@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardView="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="@integer/material_motion_duration_medium_2"
+    cardView:cardCornerRadius="20dp"
+    cardView:cardElevation="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image_view"
+            android:layout_width="0dp"
+            android:layout_height="190dp"
+            android:scaleType="centerCrop"
+            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintTop_toTopOf="parent"
+            cardView:layout_constraintEnd_toEndOf="parent"
+            cardView:shapeAppearanceOverlay="@style/customRoundedImageView"
+            tools:background="@tools:sample/backgrounds/scenic" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tittle_text_view"
+            style="?attr/textAppearanceHeadline6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            cardView:layout_constraintTop_toBottomOf="@+id/image_view" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/date_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            style="?attr/textAppearanceBody2"
+            cardView:layout_constraintBottom_toBottomOf="parent"
+            cardView:layout_constraintEnd_toEndOf="parent"
+            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintTop_toBottomOf="@+id/tittle_text_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

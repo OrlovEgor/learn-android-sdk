@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import ru.orlovegor.material.data.Purchase
+import com.squareup.picasso.Picasso
+import ru.orlovegor.material.data.RemoteMovie
 import ru.orlovegor.material.databinding.ItemPurchaseBinding
 
-class PurchaseAdapter : ListAdapter<Purchase, PurchaseAdapter.Holder>(PurchaseDiffUtil()) {
+class MovieAdapter : ListAdapter<RemoteMovie, MovieAdapter.Holder>(PurchaseDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemPurchaseBinding.inflate(
@@ -21,12 +22,12 @@ class PurchaseAdapter : ListAdapter<Purchase, PurchaseAdapter.Holder>(PurchaseDi
         holder.bind(getItem(position))
     }
 
-    class PurchaseDiffUtil : DiffUtil.ItemCallback<Purchase>() {
-        override fun areItemsTheSame(oldItem: Purchase, newItem: Purchase): Boolean {
+    class PurchaseDiffUtil : DiffUtil.ItemCallback<RemoteMovie>() {
+        override fun areItemsTheSame(oldItem: RemoteMovie, newItem: RemoteMovie): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Purchase, newItem: Purchase): Boolean {
+        override fun areContentsTheSame(oldItem: RemoteMovie, newItem: RemoteMovie): Boolean {
             return oldItem == newItem
         }
 
@@ -35,9 +36,12 @@ class PurchaseAdapter : ListAdapter<Purchase, PurchaseAdapter.Holder>(PurchaseDi
     class Holder(
         private val binding: ItemPurchaseBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Purchase) {
+        fun bind(item: RemoteMovie) {
+            with(binding){
+                tittleTextView.text = item.title
+                dateTextView.text = item.movieType.name.lowercase()
+                Picasso.get().load(item.imageUrl).error(R.drawable.ic_error).into(imageView)
+            }
         }
-
-
     }
 }

@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="Gradle: com.hannesdorfmann:adapterdelegates4:4.3.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/AppData/Local/Android/Sdk/caches/transforms-2/files-2.1/21badd1b539c5ca502eca6783be4b20c/jetified-adapterdelegates4-4.3.0/res" />
+      <root url="file://$USER_HOME$/AppData/Local/Android/Sdk/caches/transforms-2/files-2.1/854bfa9c03df48ad9c58642953579092/jetified-adapterdelegates4-4.3.0/res" />
+      <root url="file://$USER_HOME$/AppData/Local/Android/Sdk/caches/transforms-2/files-2.1/30234d3210d97af8e9238ae54f41cd4f/jetified-adapterdelegates4-4.3.0/res" />
+      <root url="file://$USER_HOME$/AppData/Local/Android/Sdk/caches/transforms-2/files-2.1/c9190b280985bdcd496674d1ff017c06/jetified-adapterdelegates4-4.3.0/res" />
+      <root url="file://$USER_HOME$/AppData/Local/Android/Sdk/caches/transforms-2/files-2.1/c9190b280985bdcd496674d1ff017c06/jetified-adapterdelegates4-4.3.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/AppData/Local/Android/Sdk/caches/transforms-2/files-2.1/c9190b280985bdcd496674d1ff017c06/jetified-adapterdelegates4-4.3.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/AppData/Local/Android/Sdk/caches/modules-2/files-2.1/com.hannesdorfmann/adapterdelegates4/4.3.0/29eec3b5527edbbad917a135454c5105d460d4bb/adapterdelegates4-4.3.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/AppData/Local/Android/Sdk/caches/modules-2/files-2.1/com.hannesdorfmann/adapterdelegates4/4.3.0/e1b12b1489cf20dc667dff48ebab646badb1529c/adapterdelegates4-4.3.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

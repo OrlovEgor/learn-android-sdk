@@ -15,12 +15,14 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import ru.skillbox.dependency_injection.databinding.FragmentImageListBinding
 import ru.skillbox.dependency_injection.utils.ViewBindingFragment
 import ru.skillbox.dependency_injection.utils.autoCleared
 import ru.skillbox.dependency_injection.utils.haveQ
 import ru.skillbox.dependency_injection.utils.toast
 
+@AndroidEntryPoint
 class ImagesFragment :
     ViewBindingFragment<FragmentImageListBinding>(FragmentImageListBinding::inflate) {
 

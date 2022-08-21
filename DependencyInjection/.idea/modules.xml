@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DependencyInjection.iml" filepath="$PROJECT_DIR$/.idea/modules/DependencyInjection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ScopedStorage.iml" filepath="$PROJECT_DIR$/.idea/modules/ScopedStorage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ScopedStorage.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ScopedStorage.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ScopedStorage.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ScopedStorage.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ScopedStorage.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ScopedStorage.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ScopedStorage.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ScopedStorage.app.unitTest.iml" />
     </modules>
   </component>
 </project>
